@@ -1,33 +1,23 @@
 import os
 import time
 
-import pandas as pd
 import numpy as np
+import pandas as pd
+import pytest
 
 import FINE as fn
 
-import pytest
 
-
-# @pytest.fixture
-# def watersupply_esM(param):
-#     if param == 0:
-#         return watersupply_esM_1
-#     if param == 1:
-#         return watersupply_esM_2
-#     if param == 2:
-#         return watersupply_esM_3
-
-
+@pytest.fixture(scope="session")
 def indirect_watersupply_esM(request):
     if request.param == 0:
-        return watersupply_esM_1
+        return watersupply_esM_1()
     elif request.param == 1:
-        return watersupply_esM_1
+        return watersupply_esM_2()
     elif request.param == 2:
-        return watersupply_esM_1
+        return watersupply_esM_3()
 
-@pytest.fixture
+# @pytest.fixture(scope="session")
 def watersupply_esM_1():
 
     # get parameters
@@ -149,7 +139,7 @@ def watersupply_esM_1():
 
     return esM
 
-@pytest.fixture
+# @pytest.fixture(scope="session")
 def watersupply_esM_2():
 
     # get parameters
@@ -271,7 +261,7 @@ def watersupply_esM_2():
 
     return esM
 
-@pytest.fixture
+# @pytest.fixture(scope="session")
 def watersupply_esM_3():
 
     # get parameters
@@ -392,4 +382,3 @@ def watersupply_esM_3():
                       operationRateFix=demand))
 
     return esM
-
